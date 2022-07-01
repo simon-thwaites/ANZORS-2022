@@ -32,15 +32,19 @@ logocenter_name: "logos/github_repo_qr_code.png" # add QR code here
 bibliography: refs.bib
 link-citations: true
 csl: biomed-central.csl   # for square brackets style citations
+nocite: "@Rposterdown"      # add nocite entry for posterdown
 output: 
   posterdown::posterdown_betterport:
-    self_contained: false
-################################################################################    
-####     Un comment the below 2 lines for pdf rendering and make sure to 
-####     comment out the self:contained: false above
+    self_contained: TRUE # need self contained for pdf rendering
+    # self_contained: false # use this for light and local html version of poster
+    
+    
+################################################################################
+####     PDF RENDERING:
+####     Un-comment the below line for pdf rendering and make sure to 
+####     comment out the "self:contained: false" above
 
-    # self_contained: TRUE # need self contained for pdf rendering
-# knit: pagedown::chrome_print # prints pdf version
+knit: pagedown::chrome_print
 
 ################################################################################
 
@@ -67,8 +71,8 @@ secondary_colour: '#002032' # UofA dark blue
 }
 caption {
 <!-- This is the table captions -->
- margin-bottom: 1mm;
- margin-top: 2mm;
+ margin-bottom: 0mm;
+ margin-top: 0mm;
 }
 .caption {
 <!-- This is the figure captions -->
@@ -105,20 +109,20 @@ Intramedullary (IM) nailing is the typical fixation for adult tibial shaft fract
 # Aims
 
 * Summarise the outcome tools reported in the assessment of tibial shaft fractures treated with IM nailing.
-* Provide insight into the extent, range, and nature of the publications. 
-
+* Provide insight into the extent, range, and nature of the publications.
+* Identify any gaps in the literature and provide recommendations for future work.
 
 # Methods
 
-PubMed and Embase databases were searched in November 2021. Covidence™ was used for article screening and data extraction. All study designs and populations were included. *Ex vivo* studies without the presence of tibial shaft fracture were included; studies reporting on open or intra-articular fractures only, or other fracture fixation were excluded. The methodology followed current scoping review guidelines [@Tricco2018; @Arksey2005]. 
+PubMed and Embase databases were searched in November 2021. Covidence™ was used for article screening and data extraction. All study designs and populations were included. *Ex vivo* studies without the presence of tibial shaft fracture were included; studies reporting on open or intra-articular fractures only, or other fracture fixation were excluded. The methodology followed current scoping review guidelines [@Tricco2018; @Arksey2005].
 
 # Results
 
-* 433 articles were identified:
-  + **165 papers included for data extraction** (Figure \@ref(fig:prismaFig)),
-  + 137 *in vivo* studies, 26 *ex vivo* studies, two papers included both study types,
-* 47% of papers were published within the last decade (Figure \@ref(fig:yearFig)):
-  + 27 different countries of origin, most (35%) were from the USA. <font size="6"><em> (supplementary material)</em></font>
+* **165 papers included for data extraction** (Figure \@ref(fig:prismaFig)):
+  + 137 *in vivo* studies, 26 *ex vivo* studies, two papers included both study types.
+* 47% of papers were published within the last decade (Figure \@ref(fig:yearFig)).
+* 27 different countries of origin: 
+  + most (35%) were from the USA. <font size="6"><em> (supplementary material)</em></font>
 
 ```{r prismaFig, fig.cap='PRISMA flowchart.', out.width = '100%'}
 knitr::include_graphics(paste0(path.fig, "/prisma flow.png"))
@@ -141,7 +145,7 @@ nailCounts.print %>%
   kbl("html",
       booktabs = T,
       align = "lrrrrrr",
-      caption = "Number of different IM nailing approaches. See supplementary material for more detailed breakdown.",
+      caption = "Number of different IM nailing approaches. See supplementary material for detailed breakdown.",
       col.names = c("Approach", "n~fracs~", "%", "n~tibias~", "%", "Total", "%")
   ) %>%
   kable_styling(font_size = 75) %>%
@@ -149,7 +153,7 @@ nailCounts.print %>%
   gsub("font-size: initial !important;", "font-size: 20pt !important;", .) # need to hack the font size for some reason as hard coding the css doesn't seem to work with kable
 ```
 
-```{r yearFig, fig.cap='Number of publications per year grouped by IM nailing focus.'}
+```{r yearFig, fig.cap='Number of publications per year grouped by IM nailing focus. All "fracture" publications in PubMed also presented.'}
 knitr::include_graphics(paste0(path.fig, "/publications-by-year.png"))
 ```
 
@@ -166,7 +170,9 @@ knitr::include_graphics(paste0(path.fig, "/CharacteristicDescriptions.png"))
 ```
 
 ***In Vivo*** **Studies**
-
+<!-- Reduce the gap here -->
+<div style="margin-bottom:-10mm;">
+</div>
 * 12,589 fractures reported (Table \@ref(tab:nailCountsShort)):
   + **33% of fractures did not describe the nailing approach**,
   + medial parapatellar IPN approach was most common (21%).
@@ -179,19 +185,22 @@ knitr::include_graphics(paste0(path.fig, "/CharacteristicDescriptions.png"))
   + **post-operative weight-bearing regime (61%), or**
   + **the mechanisms of injury (55%)** (Figure \@ref(fig:characteristicsFig)).
 * Most frequent follow-up times were 6 and 12 months (22% each). <font size="6"><em> (supplementary material)</em></font>
-* 47% of studies level were III evidence. <font size="6"><em> (supplementary material)</em></font>
+* 47% were III evidence. <font size="6"><em> (supplementary material)</em></font>
 
 ```{r cadavericOutcomesFig, fig.cap='Outcomes for ex vivo studies grouped by IM nailing focus. See supplementary material for full list of outcomes.'}
 knitr::include_graphics(paste0(path.fig, "/cadavericOutcomes.png"))
 ```
 
-***Ex Vivo*** **Studies**  
-
+***Ex Vivo*** **Studies**
+<!-- Reduce the gap here -->
+<div style="margin-bottom:-10mm;">
+</div>
 * 365 tibias included (Table \@ref(tab:nailCountsShort)).
 * 33 unique outcomes (Figure \@ref(fig:cadavericOutcomesFig)):
   + nail insertion location was most common (13%).
 
 ```{r nailCountasAll, out.width='100%', eval = FALSE}
+## not run
 # nailCounts.print.all <- nailCounts[, -1]
 # 
 # nailCounts.print.all$per_cad <- gsub("^0$", "--", nailCounts.print.all$per_cad) # replace zeros (using anchors for the string)
@@ -240,18 +249,18 @@ knitr::include_graphics(paste0(path.fig, "/follow-up-times.png"))
 
 # Conclusion
 
-This is the first study to review and chart the outcome measures used in the assessment of tibial shaft fractures treated with IM nailing. Notably, a number of the scores routinely used are designed for other pathologies and do not contain a kneeling component, shown to cause the most severe pain within this cohort [@Song2012], and the most frequent modality is simply asking whether any knee pain exists. Currently, no conclusive evidence exists to inform surgical decision making on whether an optimal IM nailing technique exists. This work highlights the need for a validated outcome measure designed specifically for this cohort.
+This is the first study to detail the outcome measures used in this cohort. There was found to be considerable heterogeneity in reporting. **The most frequent modality was simply asking whether any knee pain exists**. Notably, a number of the scores routinely used were designed for other pathologies and do not contain a kneeling component, shown to cause the most severe pain within this cohort [@Song2012]. These results have highlighted a number of gaps in the literature and provide motivation for a validated, cohort-specific outcome measure. This work should ultimately help to inform surgical decision-making on whether an optimal IM nailing technique exists.
 
 ### Acronyms
-<!-- Need to add some css styling here to control the whitespace and font size  -->
+<!-- Need to add some HTML here to control the whitespace and font size  -->
 <div style="margin-bottom:-13mm;">
 </div>
-<font size="6">
+<font size="7"> <!-- font size 7 is the same as rest of main text but keep here increase need to decrease -->
 IM -- intramedullary; IPN -- infrapatellar nail; SE -- Semi-extended; SPN -- suprapatellar nail; ND -- no description; NA -- not applicable; ROM -- range of motion; VAS -- visual analogue score; NRS -- numerical rating score.</font>
 
 ### More Information
 <div style="margin-bottom:-13mm;">
 </div>
-Simply scan the QR code to find out more.
+Scan the QR code below to find out more.
 
 ### References
