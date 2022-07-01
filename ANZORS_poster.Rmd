@@ -1,0 +1,257 @@
+---
+main_topsize: 0.1 # percent coverage of the poster
+main_bottomsize: 0.07
+poster_height: "1188mm"
+poster_width: "841mm"
+# title: "**Intramedullary nailing of tibial shaft fractures: a scoping review**"
+title: ""
+author:
+  - name: Simon Thwaites
+    affil: 1
+    orcid: '0000-0001-9049-2165'
+    email: simon.thwaites@adelaide.edu.au
+    main: true
+  - name: John Abrahams
+    affil: 2  
+  - name: Dominic Thewlis
+    affil: 1, 2
+  - name: Mark Rickman
+    affil: 1, 2
+affiliation:
+  - num: 1
+    address: Centre for Orthopaedic and Trauma Research, Adelaide Medical School, The University of Adelaide, Adelaide, Australia
+  - num: 2
+    address: Department of Orthopaedics and Trauma, Royal Adelaide Hospital, Adelaide, Australia
+main_findings:
+  # - "**The most prevalent outcome tool in 165 studies was simply asking whether any knee pain exists.**"
+  - "**Intramedullary nailing of tibial shaft fractures: a scoping review**"
+main_fontfamily: "Georgia"
+logoright_name: "logos/RAH.png"
+logoleft_name: "logos/uoa-logo-dk-blue-vert.gif"
+logocenter_name: "logos/github_repo_qr_code.png" # add QR code here
+bibliography: refs.bib
+link-citations: true
+csl: biomed-central.csl   # for square brackets style citations
+output: 
+  posterdown::posterdown_betterport:
+    self_contained: false
+################################################################################    
+####     Un comment the below 2 lines for pdf rendering and make sure to 
+####     comment out the self:contained: false above
+
+    # self_contained: TRUE # need self contained for pdf rendering
+# knit: pagedown::chrome_print # prints pdf version
+
+################################################################################
+
+
+# Main Colour Scheme ..........................................................
+primary_colour: '#002032'   # UofA dark blue
+secondary_colour: '#002032' # UofA dark blue
+# secondary_colour: '#4391ca'
+# accent_colour: "#5d19c4"
+---
+<!-- Add some css in the .Rmd to handle logo sizing and caption spacing-->
+<style>
+#main-img-left {
+ width: 15.5%;
+ margin-bottom: -0.5%;
+}
+#main-img-center {
+ width: 9%;
+ margin-bottom: -1%;
+}
+#main-img-right {
+ width: 12%;
+<!-- margin-bottom: -1% -->
+}
+caption {
+<!-- This is the table captions -->
+ margin-bottom: 1mm;
+ margin-top: 2mm;
+}
+.caption {
+<!-- This is the figure captions -->
+ margin-bottom: 8mm;
+ margin-top: 1mm;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  out.width = '85%',
+  fig.align = 'center')
+
+## libraries
+library(knitr)
+library(kableExtra)
+
+## paths
+path.src <- getwd() # location of this Rmd file
+path.fig <-  paste0("./figures") # get figures folder
+path.data <-  paste0("./data") # get data folder
+
+## fetch data
+nailCounts <- read.csv(paste0(path.data, "/combine_invivo_cadaveric_nailcounts.csv"))
+countryCounts <- read.csv(paste0(path.data, "/Country_totals.csv"))
+studyCounts <- read.csv(paste0(path.data, "/studyDesigns.csv"))
+```
+
+# Introduction
+Intramedullary (IM) nailing is the typical fixation for adult tibial shaft fractures, the most common long bone fracture [@Courtney2011]. Techniques to perform IM nailing vary, and studies comparing approaches show conflicting results. The absence of a validated, cohort-specific outcome measure has led to a wide range of outcome measures reported, making comparisons difficult. The true extent and prevalence of outcome measures in use is currently not known.
+
+# Aims
+
+* Summarise the outcome tools reported in the assessment of tibial shaft fractures treated with IM nailing.
+* Provide insight into the extent, range, and nature of the publications. 
+
+
+# Methods
+
+PubMed and Embase databases were searched in November 2021. Covidence™ was used for article screening and data extraction. All study designs and populations were included. *Ex vivo* studies without the presence of tibial shaft fracture were included; studies reporting on open or intra-articular fractures only, or other fracture fixation were excluded. The methodology followed current scoping review guidelines [@Tricco2018; @Arksey2005]. 
+
+# Results
+
+* 433 articles were identified:
+  + **165 papers included for data extraction** (Figure \@ref(fig:prismaFig)),
+  + 137 *in vivo* studies, 26 *ex vivo* studies, two papers included both study types,
+* 47% of papers were published within the last decade (Figure \@ref(fig:yearFig)):
+  + 27 different countries of origin, most (35%) were from the USA. <font size="6"><em> (supplementary material)</em></font>
+
+```{r prismaFig, fig.cap='PRISMA flowchart.', out.width = '100%'}
+knitr::include_graphics(paste0(path.fig, "/prisma flow.png"))
+```
+
+```{r nailCountsShort, out.width='100%'}
+nailCounts.print <- nailCounts[c(9, 14, 19:21), -2] # select just the total rows, drop the specific approach
+
+rownames(nailCounts.print) = NULL # reorder the rownames
+
+## replace instances of 0 with a double dash, and dash with double dash as dash goes to ugly black dot in html (could escape but en dash is fine)
+nailCounts.print$per_cad <- gsub("^0$", "--", nailCounts.print$per_cad) # replace zeros (using anchors for the string)
+nailCounts.print$n..cadaveric <- gsub("^-$", "--", nailCounts.print$n..cadaveric) # replace dash (using anchors for the string)
+nailCounts.print[2,1] <- "SE"
+
+nailCounts.print$per_in.vivo <- as.character(nailCounts.print$per_in.vivo) 
+nailCounts.print$per_tot <- as.character(nailCounts.print$per_tot) 
+
+nailCounts.print %>%
+  kbl("html",
+      booktabs = T,
+      align = "lrrrrrr",
+      caption = "Number of different IM nailing approaches. See supplementary material for more detailed breakdown.",
+      col.names = c("Approach", "n~fracs~", "%", "n~tibias~", "%", "Total", "%")
+  ) %>%
+  kable_styling(font_size = 75) %>%
+  add_header_above(c("", "*in vivo*" = 2, "*ex vivo*" = 2 , "", "")) %>% 
+  gsub("font-size: initial !important;", "font-size: 20pt !important;", .) # need to hack the font size for some reason as hard coding the css doesn't seem to work with kable
+```
+
+```{r yearFig, fig.cap='Number of publications per year grouped by IM nailing focus.'}
+knitr::include_graphics(paste0(path.fig, "/publications-by-year.png"))
+```
+
+```{r patientOutcomesFig, fig.cap='Patient outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of patient outcomes.'}
+knitr::include_graphics(paste0(path.fig, "/patientOutcomes.png"))
+```
+
+```{r clinicalOutcomesFig, fig.cap='Clinical outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of clinical outcomes.'}
+knitr::include_graphics(paste0(path.fig, "/clinicalOutcomes.png"))
+```
+
+```{r characteristicsFig, fig.cap='Ditribution of papers describing important study characteristics.'}
+knitr::include_graphics(paste0(path.fig, "/CharacteristicDescriptions.png"))
+```
+
+***In Vivo*** **Studies**
+
+* 12,589 fractures reported (Table \@ref(tab:nailCountsShort)):
+  + **33% of fractures did not describe the nailing approach**,
+  + medial parapatellar IPN approach was most common (21%).
+* 126 unique patient outcomes (Figure \@ref(fig:patientOutcomesFig)): 
+  + **A binary (yes/no) assessment of knee pain was most common (29%)**,
+  + VAS and NRS scores accounted for 46% of all unique patient outcomes.
+* 69 unique clinical outcomes (Figure \@ref(fig:clinicalOutcomesFig)):
+  + fracture union was most common (51%).
+* **Most studies did not describe:**
+  + **post-operative weight-bearing regime (61%), or**
+  + **the mechanisms of injury (55%)** (Figure \@ref(fig:characteristicsFig)).
+* Most frequent follow-up times were 6 and 12 months (22% each). <font size="6"><em> (supplementary material)</em></font>
+* 47% of studies level were III evidence. <font size="6"><em> (supplementary material)</em></font>
+
+```{r cadavericOutcomesFig, fig.cap='Outcomes for ex vivo studies grouped by IM nailing focus. See supplementary material for full list of outcomes.'}
+knitr::include_graphics(paste0(path.fig, "/cadavericOutcomes.png"))
+```
+
+***Ex Vivo*** **Studies**  
+
+* 365 tibias included (Table \@ref(tab:nailCountsShort)).
+* 33 unique outcomes (Figure \@ref(fig:cadavericOutcomesFig)):
+  + nail insertion location was most common (13%).
+
+```{r nailCountasAll, out.width='100%', eval = FALSE}
+# nailCounts.print.all <- nailCounts[, -1]
+# 
+# nailCounts.print.all$per_cad <- gsub("^0$", "--", nailCounts.print.all$per_cad) # replace zeros (using anchors for the string)
+# nailCounts.print.all$per_cad <- gsub("^-$", "--", nailCounts.print.all$per_cad)
+# nailCounts.print.all$n..cadaveric <- gsub("^-$", "--", nailCounts.print.all$n..cadaveric) # replace dash (using anchors for the string)
+# # nailCounts.print.all$generalApproach <- gsub("^Semi-extended$", "SE", nailCounts.print.all$generalApproach) # replace dash (using anchors for the string)
+# nailCounts.print.all$Approach <- gsub("Semi-extended", "SE", nailCounts.print.all$Approach)
+# 
+# # nailCounts.print.all$Approach[5:7] <- c(
+# #   "IPN grouped transpatellar\nand lateral parapatellar",
+# #   "IPN grouped transpatellar\nand medial parapatellar",
+# #   "IPN grouped transpatellar\nand medial/lateral parapatellar"
+# # )
+# 
+# nailCounts.print.all %>% 
+#   kbl("html", 
+#       booktabs = T, 
+#       align = "lrrrrrr", 
+#       caption = "Nailing approach counts",
+#       col.names = c("Approach", "n~fracs~", "%", "n~tibias~", "%", "tootal", "%")
+#       ) %>% 
+#   kable_styling(font_size = 60) %>% 
+#   add_header_above(c("", "*in vivo*" = 2, "*ex vivo*" = 2 , "Total" = 2))
+#   
+```
+
+```{r loeFig, fig.cap='Here is a caption for the figure.', eval = FALSE}
+knitr::include_graphics(paste0(path.fig, "/level-of-evidence.png"))
+```
+
+```{r countryTabs, out.width='80%', eval = FALSE}
+## not being run 
+countryCounts %>% 
+  kbl("html", booktabs = T, align = "lrr", caption = "Country of origin") %>% 
+  kable_styling(full_width = F, position = "float_left")
+
+studyCounts %>% 
+  kbl("html", booktabs = T, align = "lrr", caption = "Study designs (n (%))") %>% 
+  kable_styling(full_width = F, position = "right")
+
+```
+
+```{r followupFig, fig.cap='Here is a caption for the figure.', eval = FALSE}
+knitr::include_graphics(paste0(path.fig, "/follow-up-times.png"))
+```
+
+# Conclusion
+
+This is the first study to review and chart the outcome measures used in the assessment of tibial shaft fractures treated with IM nailing. Notably, a number of the scores routinely used are designed for other pathologies and do not contain a kneeling component, shown to cause the most severe pain within this cohort [@Song2012], and the most frequent modality is simply asking whether any knee pain exists. Currently, no conclusive evidence exists to inform surgical decision making on whether an optimal IM nailing technique exists. This work highlights the need for a validated outcome measure designed specifically for this cohort.
+
+### Acronyms
+<!-- Need to add some css styling here to control the whitespace and font size  -->
+<div style="margin-bottom:-13mm;">
+</div>
+<font size="6">
+IM -- intramedullary; IPN -- infrapatellar nail; SE -- Semi-extended; SPN -- suprapatellar nail; ND -- no description; NA -- not applicable; ROM -- range of motion; VAS -- visual analogue score; NRS -- numerical rating score.</font>
+
+### More Information
+<div style="margin-bottom:-13mm;">
+</div>
+Simply scan the QR code to find out more.
+
+### References

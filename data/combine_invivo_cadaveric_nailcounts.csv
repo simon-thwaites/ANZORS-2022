@@ -1,0 +1,22 @@
+generalApproach,Approach,"n, in vivo",per_in.vivo,"n, cadaveric",per_cad,totals,per_tot
+IPN,IPN lateral parapatellar,10,0.1,37,10.1,47,0.4
+IPN,IPN medial parapatellar,2599,20.6,119,32.6,2718,21
+IPN,IPN medial transtendinous,21,0.2,-,-,21,0.2
+IPN,IPN transpatellar,2072,16.5,43,11.8,2115,16.3
+IPN,IPN grouped transpatellar and lateral parapatellar,14,0.1,-,-,14,0.1
+IPN,IPN grouped transpatellar and medial parapatellar,228,1.8,-,-,228,1.8
+IPN,IPN grouped transpatellar and medial/lateral parapatellar,134,1.1,-,-,134,1
+IPN,IPN unspecified,1069,8.5,-,-,1069,8.3
+IPN,Subtotal,6147,48.8,199,54.5,6346,49
+Semi-extended,Semi-extended lateral parapatellar,211,1.7,-,0,211,1.6
+Semi-extended,Semi-extended lateral paratendinous,40,0.3,-,-,40,0.3
+Semi-extended,Semi-extended medial parapatellar,97,0.8,-,0,97,0.7
+Semi-extended,Semi-extended superomedial,84,0.7,-,-,84,0.6
+Semi-extended,Subtotal,432,3.4,-,0,432,3.3
+SPN,SPN Chinese aircraft-shaped sleeve,33,0.3,-,-,33,0.3
+SPN,SPN lateral,22,0.2,10,2.7,32,0.2
+SPN,SPN midline,770,6.1,67,18.4,837,6.5
+SPN,SPN unspecified,1044,8.3,33,9,1077,8.3
+SPN,Subtotal,1869,14.8,110,30.1,1979,15.3
+ND,No description,4141,32.9,56,15.3,4197,32.4
+Totals, ,12589,100,365,100,12954,100

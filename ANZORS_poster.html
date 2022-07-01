@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>ANZORS_poster.knit</title>
+
+
+<script src="ANZORS_poster_files/kePrint-0.0.1/kePrint.js"></script>
+<link href="ANZORS_poster_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Georgia' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Rasa' rel='stylesheet'>
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+@page {
+size: 841mm 1188mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 841mm;
+height: 1188mm;
+text-align: justify;
+font-size: 45px;
+line-height: 1.05;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #00203224;
+color: #002032;
+padding: 1.2mm;
+line-height: 1;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #00203220;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  font-size: 40%;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 1em;
+  padding-left: 1em;
+  line-height: 1em;
+}
+table {
+  margin: auto;
+}
+th {
+  padding-left: 5mm;
+  padding-right: 5mm;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+padding-top: 0;
+}
+.references {
+font-size: 20px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+float: left;
+padding: 0px;
+}
+.outer {
+width: 841mm;
+height: calc(1188mm *  (1 - 0.1 - 7.0e-2 - 0.01) );
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+column-gap: 0;
+padding-left: 0cm;
+padding-right: 0cm;
+/* -webkit-column-rule-width: 50%;
+-moz-column-rule-width: 50%;
+column-rule-width: 50%; */
+-webkit-column-rule-style: none;
+-moz-column-rule-style: none;
+column-rule-style: none;
+-webkit-column-rule-color: black;
+-moz-column-rule-color: black;
+column-rule-color: black;
+background-color: #ffffff;
+font-family: Rasa;
+margin-top: calc(1188mm *  0.1 );
+padding-top: 1em;
+padding-bottom: 1em;
+}
+span.citation {
+  color: #002032;
+  font-weight: bold;
+}
+a {
+text-decoration: none;
+color: #002032;
+}
+#title {
+font-size: 125pt;
+text-align: left;
+margin: 0;
+line-height: 98%;
+border-bottom: 0;
+font-weight: normal;
+background: 0;
+}
+#author {
+color: #002032;
+margin: 0;
+line-height: 85%;
+font-size: 1.17em;
+}
+#affiliation {
+padding-top: 0.1em;
+color: ;
+font-style: italic;
+font-size: 25px;
+margin: 0;
+}
+sup {
+color: #cc0000;
+}
+.affiliation sup {
+font-size: 20px;
+}
+.author {
+text-align: left;
+}
+.author sup {
+font-size: 30px;
+}
+.author_extra {
+color: #002032;
+margin: 0;
+line-height: 85%;
+font-size: 35px;
+text-align: left;
+}
+.outer h1, h2, h3, h4, h5, h6 {
+text-align: center;
+margin: 0;
+font-weight: bold;
+}
+.section h1 {
+  text-align:center;
+  padding-bottom:5px;
+  background:
+    linear-gradient(
+      to left,
+      #ffffff 1%,
+      #ffffff 20%,
+      #00203275 33%,
+      #002032 50%,
+      #00203275 66%,
+      #ffffff 80%,
+      #ffffff 99%
+    )
+    left
+    bottom
+    #ffffff
+    no-repeat;
+  background-size:100% 5px ;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.outer h2 {
+text-align: center;
+}
+.outer p, .level2 {
+color: #000000;
+}
+.outer ol {
+padding-left: 8%;
+padding-right: 8%;
+text-align: left;
+}
+.main {
+width: 841mm;
+height: calc(1188mm * 0.1);
+position: absolute;
+background-color: #002032;
+color: #ffffff90;
+font-family: Georgia;
+background-image: linear-gradient(#002032 50%,#002032);
+}
+.main strong {
+color: #ffffff;
+}
+.main strong > sup {
+color: #ffffff;
+}
+.main sup {
+color: #ffffff90;
+}
+#main-img-left {
+width: 10%;
+left: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+#main-img-center {
+width: 10%;
+left: calc(841mm * 0.45);
+bottom: 0.5in;
+position: absolute;
+}
+#main-img-right {
+width: 10%;
+right: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+.main p {
+font-size: 150px;
+font-family: Georgia;
+text-align: center;
+margin: 0;
+position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+margin-left: 1em;
+}
+.fab {
+color: #00000030;
+font-size: 25px;
+}
+.twitter, i {
+color: #00000030;
+font-size: 35px;
+text-decoration: none;
+}
+a.email {
+text-decoration: none;
+color: #00000030;
+font-size: 35px;
+}
+.envelope {
+color: #00000030;
+font-size: 5px;
+text-decoration: none;
+}
+.poster_wrap {
+width: 841mm;
+height: 1188mm;
+padding: 0cm;
+}
+.main_bottom {
+width: 841mm;
+height: calc(1188mm * 7.0e-2);
+margin-top: calc(1188mm * (1 - 7.0e-2));
+position: absolute;
+background-color: #002032;
+background-image: linear-gradient(#002032 10%, #002032);
+}
+.section {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+span > #tab:mytable {
+  font-weight: bold;
+}
+.orcid img {
+  width: 3%;
+}
+.emphasis {
+  background-color: #008080;
+  color: #ffffff;
+  border: solid #0b2045 3mm;
+  margin: 1em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.emphasis h1 {
+  font-weight: bold;
+  background: none;
+  background-color: #0b2045;
+  padding-bottom: 5mm;
+  padding-top: 1mm;
+  margin-top: -1mm;
+  margin-right: -1mm;
+  margin-left: -1mm;
+}
+.emphasis blockquote {
+  border: 0;
+}
+.emphasis ol {
+  padding: 0;
+  padding-left: 8%;
+  font-size: 100%;
+  font-weight: bold;
+}
+.emphasis p {
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="column outer">
+<div class="section">
+
+<h3 id="author" class="author">
+
+Simon Thwaites<sup> 1, <a class="orcid" href="https://orcid.org/0000-0001-9049-2165"><img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/orcid.jpg"></a></sup><br>
+
+<a class='envelope'><i class="fas fa-envelope"></i></a> <a href="mailto:simon.thwaites@adelaide.edu.au" class="email">simon.thwaites@adelaide.edu.au</a> <br>
+   </h3>
+
+<h5 id="author_extra", class="author_extra">
+ John Abrahams<sup>2</sup>
+ Dominic Thewlis<sup>1, 2</sup>
+ Mark Rickman<sup>1, 2</sup>
+</h5>
+
+
+<p id="affiliation" class="affiliation">
+<sup>1</sup> Centre for Orthopaedic and Trauma Research, Adelaide Medical School, The University of Adelaide, Adelaide, Australia<br> <sup>2</sup> Department of Orthopaedics and Trauma, Royal Adelaide Hospital, Adelaide, Australia
+</p>
+</div>
+
+<!-- Add some css in the .Rmd to handle logo sizing and caption spacing-->
+<style>
+#main-img-left {
+ width: 15.5%;
+ margin-bottom: -0.5%;
+}
+#main-img-center {
+ width: 9%;
+ margin-bottom: -1%;
+}
+#main-img-right {
+ width: 12%;
+<!-- margin-bottom: -1% -->
+}
+caption {
+<!-- This is the table captions -->
+ margin-bottom: 1mm;
+ margin-top: 2mm;
+}
+.caption {
+<!-- This is the figure captions -->
+ margin-bottom: 8mm;
+ margin-top: 1mm;
+}
+</style>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Intramedullary (IM) nailing is the typical fixation for adult tibial shaft fractures, the most common long bone fracture <span class="citation">[<a href="#ref-Courtney2011" role="doc-biblioref">1</a>]</span>. Techniques to perform IM nailing vary, and studies comparing approaches show conflicting results. The absence of a validated, cohort-specific outcome measure has led to a wide range of outcome measures reported, making comparisons difficult. The true extent and prevalence of outcome measures in use is currently not known.</p>
+</div>
+<div id="aims" class="section level1">
+<h1>Aims</h1>
+<ul>
+<li>Summarise the outcome tools reported in the assessment of tibial shaft fractures treated with IM nailing.</li>
+<li>Provide insight into the extent, range, and nature of the publications.</li>
+</ul>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<p>PubMed and Embase databases were searched in November 2021. Covidence™ was used for article screening and data extraction. All study designs and populations were included. <em>Ex vivo</em> studies without the presence of tibial shaft fracture were included; studies reporting on open or intra-articular fractures only, or other fracture fixation were excluded. The methodology followed current scoping review guidelines <span class="citation">[<a href="#ref-Tricco2018" role="doc-biblioref">2</a>, <a href="#ref-Arksey2005" role="doc-biblioref">3</a>]</span>.</p>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<ul>
+<li>433 articles were identified:
+<ul>
+<li><strong>165 papers included for data extraction</strong> (Figure <a href="#fig:prismaFig">1</a>),</li>
+<li>137 <em>in vivo</em> studies, 26 <em>ex vivo</em> studies, two papers included both study types,</li>
+</ul></li>
+<li>47% of papers were published within the last decade (Figure <a href="#fig:yearFig">2</a>):
+<ul>
+<li>27 different countries of origin, most (35%) were from the USA. <font size="6"><em> (supplementary material)</em></font></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:prismaFig"></span>
+<img src="figures/prisma%20flow.png" alt="PRISMA flowchart." width="100%" />
+<p class="caption">
+Figure 1: PRISMA flowchart.
+</p>
+</div>
+<table class="table" style="font-size: 75px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: 20pt !important;">
+<span id="tab:nailCountsShort">Table 1: </span>Number of different IM nailing approaches. See supplementary material for more detailed breakdown.
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+<em>in vivo</em>
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+<em>ex vivo</em>
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Approach
+</th>
+<th style="text-align:right;">
+n<sub>fracs</sub>
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:right;">
+n<sub>tibias</sub>
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:right;">
+Total
+</th>
+<th style="text-align:right;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+IPN
+</td>
+<td style="text-align:right;">
+6147
+</td>
+<td style="text-align:right;">
+48.8
+</td>
+<td style="text-align:right;">
+199
+</td>
+<td style="text-align:right;">
+54.5
+</td>
+<td style="text-align:right;">
+6346
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:right;">
+432
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+–
+</td>
+<td style="text-align:right;">
+–
+</td>
+<td style="text-align:right;">
+432
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPN
+</td>
+<td style="text-align:right;">
+1869
+</td>
+<td style="text-align:right;">
+14.8
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+30.1
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+15.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ND
+</td>
+<td style="text-align:right;">
+4141
+</td>
+<td style="text-align:right;">
+32.9
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+15.3
+</td>
+<td style="text-align:right;">
+4197
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Totals
+</td>
+<td style="text-align:right;">
+12589
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+12954
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:yearFig"></span>
+<img src="figures/publications-by-year.png" alt="Number of publications per year grouped by IM nailing focus." width="85%" />
+<p class="caption">
+Figure 2: Number of publications per year grouped by IM nailing focus.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:patientOutcomesFig"></span>
+<img src="figures/patientOutcomes.png" alt="Patient outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of patient outcomes." width="85%" />
+<p class="caption">
+Figure 3: Patient outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of patient outcomes.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:clinicalOutcomesFig"></span>
+<img src="figures/clinicalOutcomes.png" alt="Clinical outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of clinical outcomes." width="85%" />
+<p class="caption">
+Figure 4: Clinical outcomes for in vivo studies grouped by IM nailing focus. See supplementary material for full list of clinical outcomes.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:characteristicsFig"></span>
+<img src="figures/CharacteristicDescriptions.png" alt="Ditribution of papers describing important study characteristics." width="85%" />
+<p class="caption">
+Figure 5: Ditribution of papers describing important study characteristics.
+</p>
+</div>
+<p><strong><em>In Vivo</em></strong> <strong>Studies</strong></p>
+<ul>
+<li>12,589 fractures reported (Table <a href="#tab:nailCountsShort">1</a>):
+<ul>
+<li><strong>33% of fractures did not describe the nailing approach</strong>,</li>
+<li>medial parapatellar IPN approach was most common (21%).</li>
+</ul></li>
+<li>126 unique patient outcomes (Figure <a href="#fig:patientOutcomesFig">3</a>):
+<ul>
+<li><strong>A binary (yes/no) assessment of knee pain was most common (29%)</strong>,</li>
+<li>VAS and NRS scores accounted for 46% of all unique patient outcomes.</li>
+</ul></li>
+<li>69 unique clinical outcomes (Figure <a href="#fig:clinicalOutcomesFig">4</a>):
+<ul>
+<li>fracture union was most common (51%).</li>
+</ul></li>
+<li><strong>Most studies did not describe:</strong>
+<ul>
+<li><strong>post-operative weight-bearing regime (61%), or</strong></li>
+<li><strong>the mechanisms of injury (55%)</strong> (Figure <a href="#fig:characteristicsFig">5</a>).</li>
+</ul></li>
+<li>Most frequent follow-up times were 6 and 12 months (22% each). <font size="6"><em> (supplementary material)</em></font></li>
+<li>47% of studies level were III evidence. <font size="6"><em> (supplementary material)</em></font></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cadavericOutcomesFig"></span>
+<img src="figures/cadavericOutcomes.png" alt="Outcomes for ex vivo studies grouped by IM nailing focus. See supplementary material for full list of outcomes." width="85%" />
+<p class="caption">
+Figure 6: Outcomes for ex vivo studies grouped by IM nailing focus. See supplementary material for full list of outcomes.
+</p>
+</div>
+<p><strong><em>Ex Vivo</em></strong> <strong>Studies</strong></p>
+<ul>
+<li>365 tibias included (Table <a href="#tab:nailCountsShort">1</a>).</li>
+<li>33 unique outcomes (Figure <a href="#fig:cadavericOutcomesFig">6</a>):
+<ul>
+<li>nail insertion location was most common (13%).</li>
+</ul></li>
+</ul>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This is the first study to review and chart the outcome measures used in the assessment of tibial shaft fractures treated with IM nailing. Notably, a number of the scores routinely used are designed for other pathologies and do not contain a kneeling component, shown to cause the most severe pain within this cohort <span class="citation">[<a href="#ref-Song2012" role="doc-biblioref">4</a>]</span>, and the most frequent modality is simply asking whether any knee pain exists. Currently, no conclusive evidence exists to inform surgical decision making on whether an optimal IM nailing technique exists. This work highlights the need for a validated outcome measure designed specifically for this cohort.</p>
+<div id="acronyms" class="section level3">
+<h3>Acronyms</h3>
+<!-- Need to add some css styling here to control the whitespace and font size  -->
+<div style="margin-bottom:-13mm;">
+
+</div>
+<p><font size="6">
+IM – intramedullary; IPN – infrapatellar nail; SE – Semi-extended; SPN – suprapatellar nail; ND – no description; NA – not applicable; ROM – range of motion; VAS – visual analogue score; NRS – numerical rating score.</font></p>
+</div>
+<div id="more-information" class="section level3">
+<h3>More Information</h3>
+<div style="margin-bottom:-13mm;">
+
+</div>
+<p>Simply scan the QR code to find out more.</p>
+</div>
+<div id="references" class="section level3 unnumbered">
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Courtney2011" class="csl-entry">
+1. Courtney PM, Bernstein J, Ahn J. In brief: Closed tibial shaft fractures. Clinical orthopaedics and related research. 2011;469:3518–21.
+</div>
+<div id="ref-Tricco2018" class="csl-entry">
+2. Tricco AC, Lillie E, Zarin W, O’Brien KK, Colquhoun H, Levac D, et al. PRISMA extension for scoping reviews (PRISMA-ScR): Checklist and explanation. Annals of internal medicine. 2018;169:467–73.
+</div>
+<div id="ref-Arksey2005" class="csl-entry">
+3. Arksey H, O’Malley L. Scoping studies: Towards a methodological framework. International journal of social research methodology. 2005;8:19–32.
+</div>
+<div id="ref-Song2012" class="csl-entry">
+4. Song SY, Chang HG, Byun JC, Kim TY. Anterior knee pain after tibial intramedullary nailing using a medial paratendinous approach. Journal of orthopaedic trauma. 2012;26:172–7.
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="main">
+<p><strong>Intramedullary nailing of tibial shaft fractures: a scoping review</strong></p>
+</div>
+<div class="main_bottom">
+<img id="main-img-left" src=logos/uoa-logo-dk-blue-vert.gif>
+<img id="main-img-center" src=logos/github_repo_qr_code.png>
+<img id="main-img-right" src=logos/RAH.png>
+</div>
+</div>
+
+
+
+</body>
+</html>
