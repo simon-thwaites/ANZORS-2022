@@ -76,8 +76,9 @@ caption {
 }
 .caption {
 <!-- This is the figure captions -->
- margin-bottom: 8mm;
- margin-top: 1mm;
+ margin-bottom: 7mm;
+ margin-top: 0mm;
+ font-size: 23pt; <!-- 20pt is original font size -->
 }
 </style>
 
@@ -125,6 +126,7 @@ PubMed and Embase databases were searched in November 2021. Covidence™ was use
 * 47% of papers were published within the last decade (Figure \@ref(fig:yearFig)).  
 * 27 different countries of origin: 
   + most (35%) were from the USA. <font size="6"><em> (supplementary material)</em></font>
+  
 
 ```{r prismaFig, fig.cap='Preferred Reporting Items for Systematic Reviews and Meta-Analyses flowchart.', out.width = '100%'}
 knitr::include_graphics(paste0(path.fig, "/prisma flow.png"))
@@ -171,7 +173,7 @@ knitr::include_graphics(paste0(path.fig, "/clinicalOutcomes.png"))
 ```
 
 ```{r characteristicsFig, fig.cap='Ditribution of papers describing important study characteristics.'}
-knitr::include_graphics(paste0(path.fig, "/CharacteristicDescriptions.png"))
+knitr::include_graphics(paste0(path.fig, "/CharacteristicDescriptions_largerY.png"))
 ```
 
 ```{r cadavericOutcomesFig, fig.cap='Outcomes for ex vivo studies grouped by IM nailing focus. See supplementary material for full list of outcomes.'}
@@ -259,7 +261,7 @@ knitr::include_graphics(paste0(path.fig, "/cadavericOutcomes.png"))
 
 # Conclusion
 
-This is the first study to detail the outcome measures used in the assessment of tibial shaft fractures treated with IM nailing. There was found to be considerable heterogeneity in reporting. The most frequent modality was simply asking whether any knee pain exists. Notably, a number of the scores routinely used were designed for other pathologies and do not assess kneeling, the most difficult activity in this cohort. **These results have highlighted a number of gaps in the literature and provide motivation for a validated, cohort-specific outcome measure**.
+This is the first study to detail the outcome measures used in the assessment of tibial shaft fractures treated with IM nailing. There was found to be considerable heterogeneity in reporting. The most frequent modality was simply asking whether any knee pain exists. Notably, a number of the scores routinely used were designed for other pathologies and do not assess kneeling, the most painful activity in this cohort. **These results have highlighted a number of gaps in the literature and provide motivation for a validated, cohort-specific outcome measure**.
 
 ### Supplementary Material
 <div style="margin-bottom:-13mm;">
